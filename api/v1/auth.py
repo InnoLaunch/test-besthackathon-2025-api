@@ -60,7 +60,7 @@ async def refresh(
 
 
 @auth_router.post(
-    path="/signup",
+    path="/",
     description="Endpoint for creating new user. Requires admin privileges"
 )
 async def signup(
@@ -69,7 +69,8 @@ async def signup(
 ) -> User:
     response = await auth_ctrl.signup(
         username=signup_user.username,
-        password=signup_user.password
+        password=signup_user.password,
+        disability_type=signup_user.disability_type
     )
     return User.model_validate(response)
 

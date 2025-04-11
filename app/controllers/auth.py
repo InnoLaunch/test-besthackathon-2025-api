@@ -11,7 +11,7 @@ from core.controller.base import BaseController
 from core.exceptions.base import UnauthorizedException
 from core.database.session import get_session
 from app.repositories.users import UsersRepo
-from app.models.user import User
+from app.models.user import User, DisabilityType
 from core.exceptions.base import ConflictException
 from core.security.password import PasswordHandler
 from core.security.jwthandler import (JWTHandler, TokenType)
@@ -26,7 +26,8 @@ class AuthCtrl(BaseController):
     async def signup(
             self,
             username: str,
-            password: str
+            password: str,
+            disability_type: DisabilityType
     ) -> User:
         user = await self.repo.get_by(
             "username",
@@ -39,7 +40,8 @@ class AuthCtrl(BaseController):
         user = await self.repo.create(
             attributes={
                 "username": username,
-                "password_hash": password_hash
+                "password_hash": password_hash,
+                "disability_type": disability_type
             }
         )
         await self.session.commit()

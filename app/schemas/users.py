@@ -1,9 +1,10 @@
 from pydantic import BaseModel
-from app.models.user import UserRole
+from app.models.user import UserRole, DisabilityType
 
 
 class UserBase(BaseModel):
     username: str
+    disability_type: DisabilityType
 
     class Config:
         from_attributes = True

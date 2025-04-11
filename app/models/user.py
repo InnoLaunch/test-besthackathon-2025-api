@@ -15,6 +15,14 @@ class UserRole(str, Enum):
     USER = "user"
 
 
+class DisabilityType(str, Enum):
+    WHEELCHAIR = "wheelchair"
+    HEARING = "hearing"
+    VISION = "vision"
+    COGNITIVE = "cognitive"
+    NONE = "none"
+
+
 class User(Base):
     __tablename__ = 'users'
     __keyfield__ = "user_id"
@@ -23,3 +31,4 @@ class User(Base):
     username = Column(String, unique=True, nullable=False)
     password_hash = Column(String, nullable=False)
     role = Column(SAEnum(UserRole, name="user_role"), nullable=False, default=UserRole.USER)
+    disability_type = Column(SAEnum(DisabilityType), nullable=False, default=DisabilityType.NONE)
