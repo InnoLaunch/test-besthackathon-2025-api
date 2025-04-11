@@ -4,14 +4,13 @@ from app.models.user import UserRole
 
 class UserBase(BaseModel):
     username: str
-    role: UserRole
 
     class Config:
         from_attributes = True
 
 
 class User(UserBase):
-    pass
+    role: UserRole
 
 
 class SignupUser(UserBase):
