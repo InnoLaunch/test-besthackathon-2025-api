@@ -27,6 +27,8 @@ def get_accessibility_score(disability: DisabilityType):
                func.coalesce(Location.guide_paths.cast(Integer), 0)
     elif disability == DisabilityType.HEARING:
         return func.coalesce(Location.induction_loops.cast(Integer), 0)
+    elif disability == DisabilityType.COGNITIVE:
+        return func.coalesce(Location.assistance_service.cast(Integer), 0)
     # Add more if needed
     return 0
 
